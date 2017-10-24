@@ -1,0 +1,7 @@
+#IntelliJ
+.idea/
+BungeeMaster.iml
+libraries/
+
+#Output
+out/
