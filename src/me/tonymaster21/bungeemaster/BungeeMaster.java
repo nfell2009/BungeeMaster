@@ -28,6 +28,7 @@ public class BungeeMaster extends JavaPlugin {
                 addonInstance.loadClasses("me.tonymaster21.bungeemaster", "effects", "expressions");
             }
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     public static SkriptAddon getAddonInstance(){
