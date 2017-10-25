@@ -25,7 +25,7 @@ public class EffConnectPlayer extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "(bm|bungeemaster) connect %string% to [server ]%string%";
+        return "(bm|bungeemaster) connect " + uuid.getSingle(paramEvent) + " to [server ] " + server.getSingle(paramEvent);
     }
 
     @Override
