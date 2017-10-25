@@ -13,7 +13,7 @@ import java.util.UUID;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetPlayerName extends SimpleExpression {
+public class ExprGetPlayerName extends SimpleExpression<String> {
     private Expression<String> uuid;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {

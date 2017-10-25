@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetOnlineCountGlobal extends SimpleExpression {
+public class ExprGetOnlineCountGlobal extends SimpleExpression<Integer> {
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
         return true;
@@ -29,12 +29,12 @@ public class ExprGetOnlineCountGlobal extends SimpleExpression {
 
     @Override
     @Nullable
-    protected String[] get (Event e) {
+    protected Integer[] get (Event e) {
         PacketGetOnlineCountGlobal packet = new PacketGetOnlineCountGlobal();
         Object obj = packet.send();
         Integer onlinecount = (Integer) obj;
         if (onlinecount != null) {
-            return new String[] {onlinecount.toString()};
+            return new Integer[] {onlinecount};
         }
         return null;
     }

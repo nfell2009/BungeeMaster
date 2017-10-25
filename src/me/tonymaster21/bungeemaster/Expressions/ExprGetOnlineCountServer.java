@@ -11,7 +11,7 @@ import org.bukkit.event.Event;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetOnlineCountServer extends SimpleExpression {
+public class ExprGetOnlineCountServer extends SimpleExpression<Integer> {
 
     private Expression<String> nameofserver;
     @Override
@@ -32,13 +32,13 @@ public class ExprGetOnlineCountServer extends SimpleExpression {
 
     @Override
     @Nullable
-    protected String[] get (Event e) {
+    protected Integer[] get (Event e) {
         if (nameofserver != null) {
             PacketGetOnlineCountServer packet = new PacketGetOnlineCountServer(nameofserver.getSingle(e));
             Object obj = packet.send();
             Integer onlinecount = (Integer) obj;
             if (onlinecount != null) {
-                return new String[] {onlinecount.toString()};
+                return new Integer[] {onlinecount};
             }
         }
         return null;

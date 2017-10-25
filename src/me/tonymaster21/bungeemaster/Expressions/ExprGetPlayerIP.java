@@ -14,7 +14,7 @@ import java.util.UUID;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetPlayerIP extends SimpleExpression {
+public class ExprGetPlayerIP extends SimpleExpression<String> {
     private Expression<String> uuid;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {

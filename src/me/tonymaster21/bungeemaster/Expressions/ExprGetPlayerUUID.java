@@ -12,7 +12,7 @@ import org.bukkit.event.Event;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetPlayerUUID extends SimpleExpression {
+public class ExprGetPlayerUUID extends SimpleExpression<String> {
     private Expression<Player> player;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {

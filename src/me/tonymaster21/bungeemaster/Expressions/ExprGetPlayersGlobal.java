@@ -14,7 +14,7 @@ import java.util.UUID;
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetPlayersGlobal extends SimpleExpression {
+public class ExprGetPlayersGlobal extends SimpleExpression<String> {
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
         return true;
