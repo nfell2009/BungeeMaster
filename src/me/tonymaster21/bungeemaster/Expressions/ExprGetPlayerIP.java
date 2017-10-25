@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Expressions;
+package me.tonymaster21.bungeemaster.expressions;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -15,6 +15,9 @@ import java.util.UUID;
  * Created by TonyMaster21 on 10/22/2017.
  */
 public class ExprGetPlayerIP extends SimpleExpression<String> {
+    static {
+        Skript.registerExpression(ExprGetPlayerIP.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) ip of [the ][player ]%string%");
+    }
     private Expression<String> uuid;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
@@ -48,6 +51,6 @@ public class ExprGetPlayerIP extends SimpleExpression<String> {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "[the ](bm|bungeemaster) ip of [the ][player ]%string%";
+        return "[the ](bm|bungeemaster) ip of [the ][player ] " + uuid.getSingle(paramEvent);
     }
 }

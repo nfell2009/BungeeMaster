@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Effects;
+package me.tonymaster21.bungeemaster.effects;
 
 import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
@@ -13,6 +13,9 @@ import org.bukkit.event.Event;
  * Created by TonyMaster21 on 10/23/2017.
  */
 public class EffStopProxy extends Effect {
+    static {
+        Skript.registerEffect(EffStopProxy.class, "stop [the ](bm|bungeemaster) proxy");
+    }
 
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {

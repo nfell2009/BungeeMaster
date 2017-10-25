@@ -15,6 +15,9 @@ import java.util.UUID;
  * Created by TonyMaster21 on 10/22/2017.
  */
 public class ExprGetPlayersGlobal extends SimpleExpression<String> {
+    static {
+        Skript.registerExpression(ExprGetPlayersGlobal.class, String.class, ExpressionType.SIMPLE, "all [online ](bm|bungeemaster) players");
+    }
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
         return true;

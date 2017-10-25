@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Expressions;
+package me.tonymaster21.bungeemaster.expressions;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,6 +12,9 @@ import org.bukkit.event.Event;
  * Created by TonyMaster21 on 10/22/2017.
  */
 public class ExprGetOnlineCountGlobal extends SimpleExpression<Integer> {
+    static {
+        Skript.registerExpression(ExprGetOnlineCountGlobal.class, Integer.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) global player count");
+    }
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
         return true;
