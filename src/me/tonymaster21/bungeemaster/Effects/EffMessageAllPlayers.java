@@ -24,7 +24,7 @@ public class EffMessageAllPlayers extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "message all (bm|bungeemaster) players %string%";
+        return "message all (bm|bungeemaster) players " + message.getSingle(paramEvent);
     }
 
     @Override
