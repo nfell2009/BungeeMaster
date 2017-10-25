@@ -24,7 +24,7 @@ public class EffKickAllPlayers extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "kick all (bm|bungeemaster) players due to %string%";
+        return "kick all (bm|bungeemaster) players due to " + message.getSingle(paramEvent);
     }
 
     @Override
