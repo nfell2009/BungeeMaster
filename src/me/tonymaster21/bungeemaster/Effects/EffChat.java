@@ -26,7 +26,7 @@ public class EffChat extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "send (bm|bungeemaster) chat[ message] %string% from %string%";
+        return "send (bm|bungeemaster) chat[ message] " +  message.getSingle(paramEvent) " from " + uuid.getSingle(paramEvent);
     }
 
     @Override
