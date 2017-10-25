@@ -1,42 +1,43 @@
 package me.tonymaster21.bungeemaster.effects;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.sun.istack.internal.Nullable;
-import me.dommi2212.BungeeBridge.packets.PacketChat;
+import me.dommi2212.BungeeBridge.packets.PacketConnectPlayer;
 import org.bukkit.event.Event;
 
 import java.util.UUID;
 
 /**
- * Created by TonyMaster21 on 10/21/2017.
+ * Created by TonyMaster21 on 10/22/2017.
  */
-public class EffChat extends Effect {
+public class EffConnectPlayer extends Effect {
     static {
-        Skript.registerEffect(EffChat.class, "send (bm|bungeemaster) chat[ message] %string% from %string%");
+        Skript.registerEffect(EffConnectPlayer.class, "(bm|bungeemaster) connect %string% to server %string%");
     }
-    private Expression<String> message;
+    private Expression<String> server;
     private Expression<String> uuid;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        message = (Expression<String>) e[0];
-        uuid = (Expression<String>) e[1];
+        uuid = (Expression<String>) e[0];
+        server = (Expression<String>) e[1];
         return true;
     }
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "send (bm|bungeemaster) chat[ message] " +  message.getSingle(paramEvent) " from " + uuid.getSingle(paramEvent);
+        return "(bm|bungeemaster) connect " + uuid.getSingle(paramEvent) + " to [server ] " + server.getSingle(paramEvent);
     }
 
     @Override
     protected void execute(Event e) {
-        if (message != null || uuid != null) {
+        if (server != null || uuid != null) {
             UUID theuuid = null;
             theuuid = UUID.fromString(uuid.getSingle(e));
-            PacketChat packet = new PacketChat(theuuid, message.getSingle(e));
+            PacketConnectPlayer packet = new PacketConnectPlayer(theuuid, server.getSingle(e));
             Object obj = packet.send();
         }
     }

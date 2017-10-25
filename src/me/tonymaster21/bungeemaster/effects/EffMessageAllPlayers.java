@@ -1,12 +1,13 @@
 package me.tonymaster21.bungeemaster.effects;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.util.Kleenean;
 import com.sun.istack.internal.Nullable;
 import me.dommi2212.BungeeBridge.packets.PacketConnectPlayer;
-import me.dommi2212.BungeeBridge.packets.PacketKickAllPlayers;
+import me.dommi2212.BungeeBridge.packets.PacketMessageAllPlayers;
 import org.bukkit.event.Event;
 
 import java.util.UUID;
@@ -14,9 +15,9 @@ import java.util.UUID;
 /**
  * Created by TonyMaster21 on 10/23/2017.
  */
-public class EffKickAllPlayers extends Effect {
+public class EffMessageAllPlayers extends Effect {
     static {
-        Skript.registerEffect(EffKickAllPlayers.class, "kick all (bm|bungeemaster) players due to %string%");
+        Skript.registerEffect(EffMessageAllPlayers.class, "message all (bm|bungeemaster) players %string%");
     }
     private Expression<String> message;
     @Override
@@ -27,13 +28,13 @@ public class EffKickAllPlayers extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "kick all (bm|bungeemaster) players due to " + message.getSingle(paramEvent);
+        return "message all (bm|bungeemaster) players " + message.getSingle(paramEvent);
     }
 
     @Override
     protected void execute(Event e) {
         if (message != null) {
-            PacketKickAllPlayers packet = new PacketKickAllPlayers(message.getSingle(e));
+            PacketMessageAllPlayers packet = new PacketMessageAllPlayers(message.getSingle(e));
             Object obj = packet.send();
         }
     }

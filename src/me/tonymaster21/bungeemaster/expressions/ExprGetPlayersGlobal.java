@@ -1,24 +1,27 @@
 package me.tonymaster21.bungeemaster.expressions;
 
+import ch.njol.skript.Skript;
 import ch.njol.skript.lang.Expression;
+import ch.njol.skript.lang.ExpressionType;
 import ch.njol.skript.lang.SkriptParser;
 import ch.njol.skript.lang.util.SimpleExpression;
 import ch.njol.util.Kleenean;
 import com.sun.istack.internal.Nullable;
-import me.dommi2212.BungeeBridge.packets.PacketGetMOTDServer;
+import me.dommi2212.BungeeBridge.packets.PacketGetPlayersGlobal;
 import org.bukkit.event.Event;
+
+import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by TonyMaster21 on 10/22/2017.
  */
-public class ExprGetMOTDServer extends SimpleExpression<String> {
+public class ExprGetPlayersGlobal extends SimpleExpression<String> {
     static {
-        Skript.registerExpression(ExprGetMOTDServer.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) motd of [the ]server %string%");
+        Skript.registerExpression(ExprGetPlayersGlobal.class, String.class, ExpressionType.SIMPLE, "all [online ](bm|bungeemaster) players");
     }
-    private Expression<String> nameOfServer;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        nameOfServer = (Expression<String>) e[0];
         return true;
     }
 
@@ -29,26 +32,24 @@ public class ExprGetMOTDServer extends SimpleExpression<String> {
 
     @Override
     public boolean isSingle(){
-        return true;
+        return false;
     }
 
     @Override
     @Nullable
     protected String[] get (Event e) {
-        if (nameOfServer != null) {
-            PacketGetMOTDServer packet = new PacketGetMOTDServer(nameOfServer.getSingle(e));
-            Object obj = packet.send();
-            String servermotd = (String) obj;
-            if (servermotd != null) {
-                return new String[] {servermotd};
-            }
+        PacketGetPlayersGlobal packet = new PacketGetPlayersGlobal();
+        Object obj = packet.send();
+        List<UUID> uuids = (List<UUID>) obj;
+
+        if (uuids != null) {
+            return uuids.stream().map(Object::toString).toArray(String[]::new);
         }
         return null;
     }
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "[the ](bm|bungeemaster) motd of [the ]server " + nameOfServer.getSingle(paramEvent);
+        return "all [online ](bm|bungeemaster) players";
     }
-
 }
