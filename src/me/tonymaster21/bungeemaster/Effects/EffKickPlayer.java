@@ -25,7 +25,7 @@ public class EffKickPlayer extends Effect {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "kick (bm|bungeemaster) player with uuid %string% due to %string%";
+        return "kick (bm|bungeemaster) player with uuid " + uuid.getSingle(paramEvent) + " due to " + message.getSingle(paramEvent);
     }
 
     @Override
