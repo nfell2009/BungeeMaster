@@ -18,8 +18,8 @@ public class ExprGetOnlineCountGlobal extends SimpleExpression {
     }
 
     @Override
-    public Class<? extends String> getReturnType() {
-        return String.class;
+    public Class<? extends Integer> getReturnType() {
+        return Integer.class;
     }
 
     @Override

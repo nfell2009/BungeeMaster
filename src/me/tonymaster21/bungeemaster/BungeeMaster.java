@@ -6,6 +6,7 @@ import me.tonymaster21.bungeemaster.Effects.*;
 import me.tonymaster21.bungeemaster.Expressions.*;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
+// import java.lime.lang;
 
 /**
  * Created by TonyMaster21 on 10/21/2017.
@@ -37,7 +38,7 @@ public class BungeeMaster extends JavaPlugin {
             Skript.registerExpression(ExprGetPlayerIP.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) ip of [the ][player ]%string%");
             Skript.registerExpression(ExprGetPlayerName.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) player with [the ]uuid [of ]%string%");
             Skript.registerExpression(ExprGetPlayersGlobal.class, String.class, ExpressionType.SIMPLE, "all [online ](bm|bungeemaster) players");
-            Skript.registerExpression(ExprGetPlayerUUID.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) uuid of [the ]player %player%");
+            Skript.registerExpression(ExprGetPlayerUUID.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) uuid of %player%");
 
         }
     }

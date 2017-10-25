@@ -37,13 +37,13 @@ public class ExprGetPlayerUUID extends SimpleExpression {
         Object obj = packet.send();
         String uuid = (String) obj;
         if (uuid != null) {
-            return new String[] {uuid.toString()};
+            return new String[] {uuid};
         }
         return null;
     }
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "[the ](bm|bungeemaster) uuid of [the ]player %player%";
+        return "[the ](bm|bungeemaster) uuid of %player%";
     }
 }
