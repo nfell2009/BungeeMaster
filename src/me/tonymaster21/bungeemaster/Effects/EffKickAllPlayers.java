@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Effects;
+package me.tonymaster21.bungeemaster.effects;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -15,6 +15,9 @@ import java.util.UUID;
  * Created by TonyMaster21 on 10/23/2017.
  */
 public class EffKickAllPlayers extends Effect {
+    static {
+        Skript.registerEffect(EffKickAllPlayers.class, "kick all (bm|bungeemaster) players due to %string%");
+    }
     private Expression<String> message;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {

@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Expressions;
+package me.tonymaster21.bungeemaster.expressions;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,11 +12,13 @@ import org.bukkit.event.Event;
  * Created by TonyMaster21 on 10/22/2017.
  */
 public class ExprGetMOTDServer extends SimpleExpression<String> {
-
-    private Expression<String> nameofserver;
+    static {
+        Skript.registerExpression(ExprGetMOTDServer.class, String.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) motd of [the ]server %string%");
+    }
+    private Expression<String> nameOfServer;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        nameofserver = (Expression<String>) e[0];
+        nameOfServer = (Expression<String>) e[0];
         return true;
     }
 
@@ -33,8 +35,8 @@ public class ExprGetMOTDServer extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get (Event e) {
-        if (nameofserver != null) {
-            PacketGetMOTDServer packet = new PacketGetMOTDServer(nameofserver.getSingle(e));
+        if (nameOfServer != null) {
+            PacketGetMOTDServer packet = new PacketGetMOTDServer(nameOfServer.getSingle(e));
             Object obj = packet.send();
             String servermotd = (String) obj;
             if (servermotd != null) {
@@ -46,7 +48,7 @@ public class ExprGetMOTDServer extends SimpleExpression<String> {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "[the ](bm|bungeemaster) motd of [the ]server %string%";
+        return "[the ](bm|bungeemaster) motd of [the ]server " + nameOfServer.getSingle(paramEvent);
     }
 
 }

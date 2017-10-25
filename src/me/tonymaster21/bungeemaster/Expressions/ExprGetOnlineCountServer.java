@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Expressions;
+package me.tonymaster21.bungeemaster.expressions;
 
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -12,11 +12,13 @@ import org.bukkit.event.Event;
  * Created by TonyMaster21 on 10/22/2017.
  */
 public class ExprGetOnlineCountServer extends SimpleExpression<Integer> {
-
-    private Expression<String> nameofserver;
+    static {
+        Skript.registerExpression(ExprGetOnlineCountServer.class, Integer.class, ExpressionType.SIMPLE, "[the ](bm|bungeemaster) player count of [the ][server ]%string%");
+    }
+    private Expression<String> nameOfServer;
     @Override
     public boolean init(Expression<?>[] e, int matchedPattern, Kleenean isDelayed, SkriptParser.ParseResult parser) {
-        nameofserver = (Expression<String>) e[0];
+        nameOfServer = (Expression<String>) e[0];
         return true;
     }
 
@@ -33,8 +35,8 @@ public class ExprGetOnlineCountServer extends SimpleExpression<Integer> {
     @Override
     @Nullable
     protected Integer[] get (Event e) {
-        if (nameofserver != null) {
-            PacketGetOnlineCountServer packet = new PacketGetOnlineCountServer(nameofserver.getSingle(e));
+        if (nameOfServer != null) {
+            PacketGetOnlineCountServer packet = new PacketGetOnlineCountServer(nameOfServer.getSingle(e));
             Object obj = packet.send();
             Integer onlinecount = (Integer) obj;
             if (onlinecount != null) {
@@ -46,6 +48,6 @@ public class ExprGetOnlineCountServer extends SimpleExpression<Integer> {
 
     @Override
     public String toString(@Nullable Event paramEvent, boolean paramBoolean) {
-        return "[the ](bm|bungeemaster) player count of [the ][server ]%string%";
+        return "[the ](bm|bungeemaster) player count of [the ][server ] " + nameOfServer.getSingle(paramEvent);
     }
 }

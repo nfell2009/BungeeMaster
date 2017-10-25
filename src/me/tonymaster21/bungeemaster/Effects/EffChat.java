@@ -1,4 +1,4 @@
-package me.tonymaster21.bungeemaster.Effects;
+package me.tonymaster21.bungeemaster.effects;
 
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
@@ -14,7 +14,9 @@ import java.util.UUID;
  * Created by TonyMaster21 on 10/21/2017.
  */
 public class EffChat extends Effect {
-
+    static {
+        Skript.registerEffect(EffChat.class, "send (bm|bungeemaster) chat[ message] %string% from %string%");
+    }
     private Expression<String> message;
     private Expression<String> uuid;
     @Override
