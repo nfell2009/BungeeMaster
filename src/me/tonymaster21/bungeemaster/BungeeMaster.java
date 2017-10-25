@@ -24,12 +24,10 @@ public class BungeeMaster extends JavaPlugin {
                 getLogger().info("BungeeBridgeClient is not installed on your server. This plugin will not work!");
             }
             if (Bukkit.getPluginManager().getPlugin("Skript") != null) {
-                Skript.registerAddon(this);
                 addonInstance = Skript.registerAddon(this);
                 addonInstance.loadClasses("me.tonymaster21.bungeemaster", "effects", "expressions");
             }
         } catch (IOException e) {
-
         }
     }
     public static SkriptAddon getAddonInstance(){
