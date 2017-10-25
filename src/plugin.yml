@@ -1,6 +1,6 @@
 name: BungeeMaster
-version: 0.1
-author: TonyMaser21
+version: 0.3
+author: TonyMaster21
 description: Communicate with your Bungeecord instance with Skript!
 soft-depend: [Skript, BungeeBridgeC]
 main: me.tonymaster21.bungeemaster.BungeeMaster
