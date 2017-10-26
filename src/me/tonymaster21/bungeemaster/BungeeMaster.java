@@ -17,11 +17,12 @@ public class BungeeMaster extends JavaPlugin {
     public void onEnable(){
         try {
             getLogger().info("For help with BungeeMaster, please visit https://bungeemaster.tonymaster21.me");
+            
             if (Bukkit.getPluginManager().getPlugin("Skript") == null) {
-                getLogger().info("Skript is not installed on your server. This plugin will not work!");
+                disableBungeeMaster("BungeeMaster requires Skript but it couldn't be found. Disabling BungeeMaster...");
             }
             if (Bukkit.getPluginManager().getPlugin("BungeeBridgeC") == null) {
-                getLogger().info("BungeeBridgeClient is not installed on your server. This plugin will not work!");
+                disableBungeeMaster("BungeeMaster requires BungeeBridgeC but it couldn't be found. Disabling BungeeMaster...");
             }
             if (Bukkit.getPluginManager().getPlugin("Skript") != null) {
                 addonInstance = Skript.registerAddon(this);
@@ -30,6 +31,11 @@ public class BungeeMaster extends JavaPlugin {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public void disableBungeeMaster(String reason) {
+        getLogger().severe(reason);
+        Bukkit.getServer().getPluginManager().disablePlugin(this);
     }
     public static SkriptAddon getAddonInstance(){
         return addonInstance;
